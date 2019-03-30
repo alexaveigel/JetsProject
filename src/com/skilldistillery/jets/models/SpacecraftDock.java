@@ -20,16 +20,16 @@ public class SpacecraftDock {
 		int menuChoice = kb.nextInt();
 		switch(menuChoice) {
 		case 1 :
-			System.out.println("fleet list");
+			listAllSpacecraft();
 			break;
 		case 2 :
 			System.out.println("fly ships");
 			break;
 		case 3 :
-			System.out.println("fastest ship");
+			fastestSpacecraft();
 			break;
 		case 4 :
-			System.out.println("most expensive");
+			mostExpensiveSpacecraft();
 			break;
 		case 5 : 
 			loadCargoShips();
@@ -38,6 +38,11 @@ public class SpacecraftDock {
 			boardTransportShips();
 			break;
 		case 7 :
+			retrieveSatelliteImages();
+			break;
+		case 8 :
+			fastestSpacecraft();
+			break;
 			
 		}
 		
@@ -69,6 +74,28 @@ public class SpacecraftDock {
 			
 		}
 		
+	}
+	public void fastestSpacecraft() {
+		double speed = 0;
+		Spacecraft fsc = new TransportShip();
+		for (Spacecraft spacecraft : scArrayList) {
+			if(speed < spacecraft.getSpeed()) {
+				speed = spacecraft.getSpeed();
+				fsc = spacecraft;
+			}
+		}
+		System.out.println("The fastest spacecraft is the " + fsc.getModel() + " at " + speed + "/mph.");
+	}
+	public void mostExpensiveSpacecraft() {
+		double price = 0;
+		Spacecraft mesc = new TransportShip();
+		for (Spacecraft spacecraft : scArrayList) {
+			if(price < spacecraft.getSpeed()) {
+				price = spacecraft.getSpeed();
+				mesc = spacecraft;
+			}
+		}
+		System.out.println("The most expensive spacecraft is the " + mesc.getModel() + " at $" + price + ".");
 	}
 	
 	public SpacecraftDock() {
