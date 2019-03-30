@@ -4,8 +4,8 @@ public abstract class Spacecraft {
 	private String model;
 	private double speed;
 	private double price;
-	private int height;
-	public Spacecraft(String model, double speed, double price, int height) {
+	private double height;
+	public Spacecraft(String model, double speed, double price, double height) {
 		super();
 		this.model = model;
 		this.speed = speed;
@@ -32,7 +32,7 @@ public double getPrice() {
 public void setPrice(double price) {
 	this.price = price;
 }
-public int getHeight() {
+public double getHeight() {
 	return height;
 }
 public void setHeight(int height) {

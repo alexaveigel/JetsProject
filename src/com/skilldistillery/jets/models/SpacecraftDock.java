@@ -6,98 +6,195 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class SpacecraftDock {
 	Scanner kb = new Scanner(System.in);
-	
 
 	private List<Spacecraft> scArrayList = new ArrayList<>();
-	
+
 	public void menu() {
-		System.out.println("Menu:\n\nPlease select a number.\n\n1. List fleet\n2. Launch all spacecraft\n3. View fastest spacecraft\n4. View most expensive spacecraft\n5. Load cargo\n6. Board all passengers\n7. Retrieve satellite imaging\n8. Initiate a spacecraft\n9. Decommission a spacecraft\n10. Quit");
+		System.out.println(
+				"Menu:\n\nPlease select a number.\n\n1. List fleet\n2. Launch all spacecraft\n3. View fastest spacecraft\n4. View most expensive spacecraft\n5. Load cargo\n6. Board all passengers\n7. Retrieve satellite imaging\n8. Initiate a spacecraft\n9. Decommission a spacecraft\n10. Quit");
 		int menuChoice = kb.nextInt();
-		switch(menuChoice) {
-		case 1 :
+		kb.nextLine();
+		switch (menuChoice) {
+		case 1:
 			listAllSpacecraft();
 			break;
-		case 2 :
-			System.out.println("fly ships");
+		case 2:
+			launchAllSpacecraft();
 			break;
-		case 3 :
+		case 3:
 			fastestSpacecraft();
 			break;
-		case 4 :
+		case 4:
 			mostExpensiveSpacecraft();
 			break;
-		case 5 : 
+		case 5:
 			loadCargoShips();
 			break;
-		case 6 :
+		case 6:
 			boardTransportShips();
 			break;
-		case 7 :
+		case 7:
 			retrieveSatelliteImages();
 			break;
-		case 8 :
-			fastestSpacecraft();
+		case 8:
+			initiateSpacecraft();
 			break;
+		
+		}
+
+	}
+
+	public void initiateSpacecraft() {
+		String type = "";
+		String model = "";
+		double speed = 0.0;
+		double price = 0.0;
+		double height = 0.0;
+		boolean correct = true;
+		while (correct) {
+			System.out.println("Please enter a type of Spacecraft>> ");
+			type = kb.nextLine();
+			if (type.equalsIgnoreCase("TransportShip") || type.equalsIgnoreCase("CargoShip")
+					|| type.equalsIgnoreCase("Satellite")) {
+				System.out.println("Type accepted.");
+				correct = false;
+			} else {
+				System.err.println("Invalid input, try again.");
+			}
+
+		}
+		correct = true;
+
+		while (correct) {
+			System.out.println("Please enter a type of model>> ");
+			model = kb.nextLine();
+			System.out.println("Model accepted.");
+			correct = false;
+		}
+		
+		correct = true;
+		
+		while (correct) {
+			System.out.println("Please the top speed>> ");
+			try {
+				speed = kb.nextDouble();
+				if (speed > 0) {
+					System.out.println("Speed accepted.");
+					correct = false;
+				}
+			}
+			catch (InputMismatchException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Enter a positive number.");
+				kb.nextLine();
+			}
 			
 		}
+		correct = true;
+		while (correct) {
+			System.out.println("Please the price>> ");
+			try {
+				price = kb.nextDouble();
+				if (price > 0) {
+					System.out.println("Price accepted.");
+					correct = false;
+				}
+			}
+			catch (InputMismatchException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Enter a positive number.");
+				kb.nextLine();
+			}
+			
+		}
+		correct = true;
+		while (correct) {
+			System.out.println("Please the height>> ");
+			try {
+				height = kb.nextDouble();
+				if (height > 0) {
+					System.out.println("Height accepted.");
+					correct = false;
+				}
+			}
+			catch (InputMismatchException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Enter a positive number.");
+				kb.nextLine();
+			}
+			
+		}
+		
+		
 		
 	}
 
-	public void loadCargoShips(){
+	public void launchAllSpacecraft() {
 		for (Spacecraft spacecraft : scArrayList) {
-			if(spacecraft instanceof Carrier) {
+			System.out.println("The " + spacecraft.getModel() + " has launched.");
+		}
+	}
+
+	public void loadCargoShips() {
+		for (Spacecraft spacecraft : scArrayList) {
+			if (spacecraft instanceof Carrier) {
 				System.out.println(((Carrier) spacecraft).loadCargo());
 			}
-			
+
 		}
-		
+
 	}
-	public void boardTransportShips(){
+
+	public void boardTransportShips() {
 		for (Spacecraft spacecraft : scArrayList) {
-			if(spacecraft instanceof Transpo) {
+			if (spacecraft instanceof Transpo) {
 				System.out.println(((Transpo) spacecraft).boardPassengers());
 			}
-			
+
 		}
-		
+
 	}
-	public void retrieveSatelliteImages(){
+
+	public void retrieveSatelliteImages() {
 		for (Spacecraft spacecraft : scArrayList) {
-			if(spacecraft instanceof Imaging) {
+			if (spacecraft instanceof Imaging) {
 				System.out.println(((Imaging) spacecraft).retrieveImaging());
 			}
-			
+
 		}
-		
+
 	}
+
 	public void fastestSpacecraft() {
 		double speed = 0;
 		Spacecraft fsc = new TransportShip();
 		for (Spacecraft spacecraft : scArrayList) {
-			if(speed < spacecraft.getSpeed()) {
+			if (speed < spacecraft.getSpeed()) {
 				speed = spacecraft.getSpeed();
 				fsc = spacecraft;
 			}
 		}
 		System.out.println("The fastest spacecraft is the " + fsc.getModel() + " at " + speed + "/mph.");
 	}
+
 	public void mostExpensiveSpacecraft() {
 		double price = 0;
 		Spacecraft mesc = new TransportShip();
 		for (Spacecraft spacecraft : scArrayList) {
-			if(price < spacecraft.getSpeed()) {
+			if (price < spacecraft.getSpeed()) {
 				price = spacecraft.getSpeed();
 				mesc = spacecraft;
 			}
 		}
 		System.out.println("The most expensive spacecraft is the " + mesc.getModel() + " at $" + price + ".");
 	}
-	
+
 	public SpacecraftDock() {
 		super();
 		scArrayList = readFile("./initialdata.txt");
