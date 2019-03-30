@@ -7,17 +7,54 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class SpacecraftDock {
+	Scanner kb = new Scanner(System.in);
+	
 
 	private List<Spacecraft> scArrayList = new ArrayList<>();
+	
+	public void menu() {
+		System.out.println("Menu:\n\nPlease select a number.\n\n1. List fleet\n2. Launch all spacecraft\n3. View fastest spacecraft\n4. View most expensive spacecraft\n5. Load cargo\n6. Board all passengers\n7. Retrieve satellite imaging\n8. Initiate a spacecraft\n9. Decommission a spacecraft\n10. Quit");
+		int menuChoice = kb.nextInt();
+		switch(menuChoice) {
+		case 1 :
+			System.out.println("fleet list");
+			break;
+		case 2 :
+			System.out.println("fly ships");
+			break;
+		case 3 :
+			System.out.println("fastest ship");
+			break;
+		case 4 :
+			System.out.println("most expensive");
+			break;
+		case 5 : 
+			loadCargoships();
+			break;
+			
+		}
+		
+	}
 
+	public void loadCargoships(){
+		for (Spacecraft spacecraft : scArrayList) {
+			if(spacecraft instanceof Carrier) {
+				System.out.println(((Carrier) spacecraft).loadCargo());
+			}
+			
+		}
+		
+	}
+	
 	public SpacecraftDock() {
 		super();
 		scArrayList = readFile("./initialdata.txt");
 		System.out.println(scArrayList.size());
 	}
-	
+
 	public void listAllSpacecraft() {
 		for (Spacecraft spacecraft : scArrayList) {
 			System.out.println(spacecraft);
@@ -77,6 +114,8 @@ public class SpacecraftDock {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+			kb.close();
 		}
 	}
+
 }

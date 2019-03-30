@@ -11,5 +11,5 @@ public class TransportShip extends Spacecraft implements Transpo {
 		super(model, speed, price, height);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 }

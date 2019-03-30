@@ -12,5 +12,13 @@ public class CargoShip extends Spacecraft implements Carrier{
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public String loadCargo() {
+		
+		return "You have loaded all the cargo for the " + this.getModel();
+		
+		
+		
+	}
 
 }
