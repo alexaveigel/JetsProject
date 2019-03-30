@@ -11,5 +11,13 @@ public class Satellite extends Spacecraft implements Imaging {
 		super(model, speed, price, height);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String retrieveImaging() {
+		
+		return "You have recieved all satellite images from the " + this.getModel() + ".";
+		
+		
+		
+	}
 
 }

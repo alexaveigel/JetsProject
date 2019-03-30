@@ -32,17 +32,39 @@ public class SpacecraftDock {
 			System.out.println("most expensive");
 			break;
 		case 5 : 
-			loadCargoships();
+			loadCargoShips();
 			break;
+		case 6 :
+			boardTransportShips();
+			break;
+		case 7 :
 			
 		}
 		
 	}
 
-	public void loadCargoships(){
+	public void loadCargoShips(){
 		for (Spacecraft spacecraft : scArrayList) {
 			if(spacecraft instanceof Carrier) {
 				System.out.println(((Carrier) spacecraft).loadCargo());
+			}
+			
+		}
+		
+	}
+	public void boardTransportShips(){
+		for (Spacecraft spacecraft : scArrayList) {
+			if(spacecraft instanceof Transpo) {
+				System.out.println(((Transpo) spacecraft).boardPassengers());
+			}
+			
+		}
+		
+	}
+	public void retrieveSatelliteImages(){
+		for (Spacecraft spacecraft : scArrayList) {
+			if(spacecraft instanceof Imaging) {
+				System.out.println(((Imaging) spacecraft).retrieveImaging());
 			}
 			
 		}

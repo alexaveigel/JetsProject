@@ -15,7 +15,7 @@ public class CargoShip extends Spacecraft implements Carrier{
 	@Override
 	public String loadCargo() {
 		
-		return "You have loaded all the cargo for the " + this.getModel();
+		return "You have loaded all the cargo for the " + this.getModel() + ".";
 		
 		
 		

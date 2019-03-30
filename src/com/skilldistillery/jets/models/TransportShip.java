@@ -12,4 +12,12 @@ public class TransportShip extends Spacecraft implements Transpo {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public String boardPassengers() {
+		
+		return "All the passengers have boarded the " + this.getModel() + ".";
+		
+		
+		
+	}
 }
