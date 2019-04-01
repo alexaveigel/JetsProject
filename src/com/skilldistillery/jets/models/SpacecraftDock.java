@@ -16,48 +16,57 @@ public class SpacecraftDock {
 	private List<Spacecraft> scArrayList = new ArrayList<>();
 
 	public void menu() {
-		System.out.println(
-				"Menu:\n\nPlease select a number.\n\n1. List fleet\n2. Launch all spacecraft\n3. View fastest spacecraft\n4. View most expensive spacecraft\n5. Load cargo\n6. Board all passengers\n7. Retrieve satellite imaging\n8. Initiate a spacecraft\n9. Decommission a spacecraft\n10. Quit");
-		int menuChoice = kb.nextInt();
-		kb.nextLine();
-		switch (menuChoice) {
-		case 1:
-			listAllSpacecraft();
+		try {
+			System.out.println(
+					"Menu:\n\nPlease select a number.\n\n1. List fleet\n2. Launch all spacecraft\n3. View fastest spacecraft\n4. View most expensive spacecraft\n5. Load cargo\n6. Board all passengers\n7. Retrieve satellite imaging\n8. Initiate a spacecraft\n9. Decommission a spacecraft\n10. Quit");
+			int menuChoice = kb.nextInt();
+			kb.nextLine();
+			if (menuChoice > 0) {
+				switch (menuChoice) {
+				case 1:
+					listAllSpacecraft();
+					menu();
+					break;
+				case 2:
+					launchAllSpacecraft();
+					menu();
+					break;
+				case 3:
+					fastestSpacecraft();
+					menu();
+					break;
+				case 4:
+					mostExpensiveSpacecraft();
+					menu();
+					break;
+				case 5:
+					loadCargoShips();
+					menu();
+					break;
+				case 6:
+					boardTransportShips();
+					menu();
+					break;
+				case 7:
+					retrieveSatelliteImages();
+					menu();
+					break;
+				case 8:
+					initiateSpacecraft();
+					menu();
+					break;
+				case 9:
+					removeSpacecraft();
+					menu();
+				default:
+					System.out.println("You have quit.");
+				}
+			}
+		} catch (InputMismatchException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Invalid input, try again.");
+			kb.nextLine();
 			menu();
-			break;
-		case 2:
-			launchAllSpacecraft();
-			menu();
-			break;
-		case 3:
-			fastestSpacecraft();
-			menu();
-			break;
-		case 4:
-			mostExpensiveSpacecraft();
-			menu();
-			break;
-		case 5:
-			loadCargoShips();
-			menu();
-			break;
-		case 6:
-			boardTransportShips();
-			menu();
-			break;
-		case 7:
-			retrieveSatelliteImages();
-			menu();
-			break;
-		case 8:
-			initiateSpacecraft();
-			menu();
-			break;
-		case 9:
-			removeSpacecraft();
-			menu();
-		default:
-			System.out.println("You have quit.");
 		}
 
 	}
