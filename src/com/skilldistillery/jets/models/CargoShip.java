@@ -7,8 +7,8 @@ public class CargoShip extends Spacecraft implements Carrier{
 		// TODO Auto-generated constructor stub
 	}
 
-	public CargoShip(String model, double speed, double price, int height) {
-		super(model, speed, price, height);
+	public CargoShip(String type, String model, double speed, double price, double height) {
+		super(type, model, speed, price, height);
 		// TODO Auto-generated constructor stub
 	}
 	

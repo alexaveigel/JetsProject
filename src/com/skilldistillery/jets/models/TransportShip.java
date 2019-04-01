@@ -7,8 +7,8 @@ public class TransportShip extends Spacecraft implements Transpo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TransportShip(String model, double speed, double price, int height) {
-		super(model, speed, price, height);
+	public TransportShip(String type, String model, double speed, double price, double height) {
+		super(type, model, speed, price, height);
 		// TODO Auto-generated constructor stub
 	}
 	

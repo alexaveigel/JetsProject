@@ -7,8 +7,8 @@ public class Satellite extends Spacecraft implements Imaging {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Satellite(String model, double speed, double price, int height) {
-		super(model, speed, price, height);
+	public Satellite(String type, String model, double speed, double price, double height) {
+		super(type, model, speed, price, height);
 		// TODO Auto-generated constructor stub
 	}
 	@Override

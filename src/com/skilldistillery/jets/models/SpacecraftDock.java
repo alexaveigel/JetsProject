@@ -23,31 +23,66 @@ public class SpacecraftDock {
 		switch (menuChoice) {
 		case 1:
 			listAllSpacecraft();
+			menu();
 			break;
 		case 2:
 			launchAllSpacecraft();
+			menu();
 			break;
 		case 3:
 			fastestSpacecraft();
+			menu();
 			break;
 		case 4:
 			mostExpensiveSpacecraft();
+			menu();
 			break;
 		case 5:
 			loadCargoShips();
+			menu();
 			break;
 		case 6:
 			boardTransportShips();
+			menu();
 			break;
 		case 7:
 			retrieveSatelliteImages();
+			menu();
 			break;
 		case 8:
 			initiateSpacecraft();
+			menu();
 			break;
-		
+		case 9:
+			removeSpacecraft();
+			menu();
+		default:
+			System.out.println("You have quit.");
 		}
 
+	}
+
+	public void removeSpacecraft() {
+		System.out.println("Which position would you like to remove?");
+		listAllSpacecraft();
+		int input = kb.nextInt();
+		scArrayList.remove(input - 1);
+		listAllSpacecraft();
+	}
+
+	private void addCargoShip(String type, String model, double speed, double price, double height) {
+		CargoShip cs = new CargoShip(type, model, speed, price, height);
+		scArrayList.add(cs);
+	}
+
+	private void addTransportShip(String type, String model, double speed, double price, double height) {
+		TransportShip ts = new TransportShip(type, model, speed, price, height);
+		scArrayList.add(ts);
+	}
+
+	private void addSatellite(String type, String model, double speed, double price, double height) {
+		Satellite s = new Satellite(type, model, speed, price, height);
+		scArrayList.add(s);
 	}
 
 	public void initiateSpacecraft() {
@@ -77,9 +112,9 @@ public class SpacecraftDock {
 			System.out.println("Model accepted.");
 			correct = false;
 		}
-		
+
 		correct = true;
-		
+
 		while (correct) {
 			System.out.println("Please the top speed>> ");
 			try {
@@ -88,13 +123,12 @@ public class SpacecraftDock {
 					System.out.println("Speed accepted.");
 					correct = false;
 				}
-			}
-			catch (InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				// TODO Auto-generated catch block
 				System.err.println("Enter a positive number.");
 				kb.nextLine();
 			}
-			
+
 		}
 		correct = true;
 		while (correct) {
@@ -105,13 +139,12 @@ public class SpacecraftDock {
 					System.out.println("Price accepted.");
 					correct = false;
 				}
-			}
-			catch (InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				// TODO Auto-generated catch block
 				System.err.println("Enter a positive number.");
 				kb.nextLine();
 			}
-			
+
 		}
 		correct = true;
 		while (correct) {
@@ -122,17 +155,24 @@ public class SpacecraftDock {
 					System.out.println("Height accepted.");
 					correct = false;
 				}
-			}
-			catch (InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				// TODO Auto-generated catch block
 				System.err.println("Enter a positive number.");
 				kb.nextLine();
 			}
-			
+
+			if (type.equalsIgnoreCase("cargoship")) {
+				addCargoShip(type, model, speed, price, height);
+			} else if (type.equalsIgnoreCase("satellite")) {
+				addSatellite(type, model, speed, price, height);
+			} else if (type.equalsIgnoreCase("transportship")) {
+				addTransportShip(type, model, speed, price, height);
+			}
+
 		}
-		
-		
-		
+
+		menu();
+
 	}
 
 	public void launchAllSpacecraft() {
@@ -202,8 +242,10 @@ public class SpacecraftDock {
 	}
 
 	public void listAllSpacecraft() {
+		int counter = 1;
 		for (Spacecraft spacecraft : scArrayList) {
-			System.out.println(spacecraft);
+			System.out.println(counter + ". " + spacecraft);
+			counter++;
 		}
 	}
 
@@ -225,14 +267,14 @@ public class SpacecraftDock {
 				Spacecraft sc = null;
 				switch (normalizeType) {
 
-				case "cargo":
-					sc = new CargoShip(model, speed, price, height);
+				case "cargoship":
+					sc = new CargoShip(type, model, speed, price, height);
 					break;
 				case "satellite":
-					sc = new Satellite(model, speed, price, height);
+					sc = new Satellite(type, model, speed, price, height);
 					break;
-				case "transpo":
-					sc = new TransportShip(model, speed, price, height);
+				case "transportship":
+					sc = new TransportShip(type, model, speed, price, height);
 					break;
 
 				}
