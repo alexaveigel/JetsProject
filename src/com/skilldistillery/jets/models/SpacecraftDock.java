@@ -66,7 +66,7 @@ public class SpacecraftDock {
 			// TODO Auto-generated catch block
 			System.err.println("Invalid input, try again.");
 			kb.nextLine();
-			menu();
+			menu(); 
 		}
 
 	}
@@ -236,8 +236,8 @@ public class SpacecraftDock {
 		double price = 0;
 		Spacecraft mesc = new TransportShip();
 		for (Spacecraft spacecraft : scArrayList) {
-			if (price < spacecraft.getSpeed()) {
-				price = spacecraft.getSpeed();
+			if (price < spacecraft.getPrice()) {
+				price = spacecraft.getPrice();
 				mesc = spacecraft;
 			}
 		}
