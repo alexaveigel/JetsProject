@@ -4,8 +4,13 @@
 
 ### Overview
 
+This program allows you to keep track of a spacecraft fleet and perform operations to said fleet.
+
 ###Concepts and Technology
 
+*Java
+*Eclipse
+*Git
 *Object Oriented Design
 
 	*Polymorphism
@@ -16,8 +21,11 @@
 ### Lessons Learned
 
 *DRY
-*Eclipse
-*Git
 *Interfaces
+*Switch statements
+*Forloops
+*Abstract classes
+*File and Buffered readers
+
 
 

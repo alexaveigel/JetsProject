@@ -1,3 +1,5 @@
-cargoShip, Falcon, 6000, 500000000, 20
+cargoship, Falcon, 6000, 500000000, 20
 satellite, Orion, 20000, 300000000, 16
-transportShip, InterPlanetary Transport System, 168000, 600000000, 400
+transportship, InterPlanetary Transport System, 168000, 600000000, 400
+cargoship, Falcon Heavy, 24600, 150000000, 230
+satellite, Hubble, 18000, 400000000, 44
